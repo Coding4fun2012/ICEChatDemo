@@ -18,7 +18,7 @@ public class Client {
             adapter.activate();
             
             //.ObjectPrx baseUser = ic.stringToProxy("Chat.User");
-            Chat.MessageReceiverPrx userPrx = Chat.MessageReceiverPrxHelper.uncheckedCast(adapter.createProxy(ic.stringToIdentity("Chat.User")));
+            Chat.CMDReceiverPrx userPrx = Chat.CMDReceiverPrxHelper.uncheckedCast(adapter.createProxy(ic.stringToIdentity("Chat.User")));
             if (userPrx == null)
                 throw new Error("Invalid proxy");
                 
@@ -26,7 +26,7 @@ public class Client {
             {
 				System.out.println("user1 login error");
 			}
-			chatRoom.sendMessage("user1","cmd xxxx");
+			chatRoom.sendCMD("user1","cmd xxxx");
 			chatRoom.logout("user1");
  
 

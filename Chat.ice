@@ -1,15 +1,15 @@
 module Chat {
  
-interface MessageReceiver {
-    void onMessage(string sender, string msg);
+interface CMDReceiver {
+    void onCMD(string sender, string cmd);
 };
  
-dictionary<string, MessageReceiver*> UserList;
+dictionary<string, CMDReceiver*> UserList;
   
 interface Room {
-    bool login(string user, MessageReceiver* receiver);
+    bool login(string user, CMDReceiver* receiver);
     void logout(string user);
-    void sendMessage(string user, string message);
+    void sendCMD(string user, string CMD);
 };
  
 };

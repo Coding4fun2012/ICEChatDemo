@@ -1,7 +1,7 @@
 public class ChatRoomI extends Chat._RoomDisp 
 {
-	java.util.Map<String, Chat.MessageReceiverPrx> users = new java.util.HashMap<String, Chat.MessageReceiverPrx>();
-    public boolean login(String user, Chat.MessageReceiverPrx receiver, Ice.Current current)
+	java.util.Map<String, Chat.CMDReceiverPrx> users = new java.util.HashMap<String, Chat.CMDReceiverPrx>();
+    public boolean login(String user, Chat.CMDReceiverPrx receiver, Ice.Current current)
     {
 	  
 		
@@ -21,23 +21,23 @@ public class ChatRoomI extends Chat._RoomDisp
 
 
 
-  public  void sendMessage(String user, String message ,  Ice.Current current)
+  public  void sendCMD(String user, String CMD ,  Ice.Current current)
     {
-		broadcast(user, message);
+		broadcast(user, CMD);
 	}
     
-  void broadcast(String user,String message){
-	  for (java.util.Map.Entry<String, Chat.MessageReceiverPrx> i : users.entrySet()) {
+  void broadcast(String user,String CMD){
+	  for (java.util.Map.Entry<String, Chat.CMDReceiverPrx> i : users.entrySet()) {
           String name = i.getKey();
-          Chat.MessageReceiverPrx Receiver = i.getValue();
-          notif(Receiver,name,message);
+          Chat.CMDReceiverPrx Receiver = i.getValue();
+          notif(Receiver,name,CMD);
           }
 	}
-  boolean notif(Chat.MessageReceiverPrx receiver, String sender, String message)
+  boolean notif(Chat.CMDReceiverPrx receiver, String sender, String CMD)
   {
 	  boolean ret = true;
 	      try {
-        receiver.onMessage(sender, message);
+        receiver.onCMD(sender, CMD);
     } catch(Exception e) {
         ret = false;
     }

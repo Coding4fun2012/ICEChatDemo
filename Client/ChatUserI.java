@@ -1,8 +1,8 @@
-public class ChatUserI extends Chat._MessageReceiverDisp 
+public class ChatUserI extends Chat._CMDReceiverDisp 
 {
 
-  public  void onMessage(String user, String message ,  Ice.Current current)
+  public  void onCMD(String user, String CMD ,  Ice.Current current)
     {
-		System.out.println("get cmd from "+user+":"+message);
+		System.out.println("get cmd from "+user+":"+CMD);
 		}
 }

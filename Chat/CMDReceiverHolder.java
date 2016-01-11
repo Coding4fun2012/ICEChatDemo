@@ -20,16 +20,35 @@
 
 package Chat;
 
-public final class UserListHolder extends Ice.Holder<java.util.Map<java.lang.String, CMDReceiverPrx>>
+public final class CMDReceiverHolder extends Ice.ObjectHolderBase<CMDReceiver>
 {
     public
-    UserListHolder()
+    CMDReceiverHolder()
     {
     }
 
     public
-    UserListHolder(java.util.Map<java.lang.String, CMDReceiverPrx> value)
+    CMDReceiverHolder(CMDReceiver value)
     {
-        super(value);
+        this.value = value;
+    }
+
+    public void
+    patch(Ice.Object v)
+    {
+        if(v == null || v instanceof CMDReceiver)
+        {
+            value = (CMDReceiver)v;
+        }
+        else
+        {
+            IceInternal.Ex.throwUOE(type(), v);
+        }
+    }
+
+    public String
+    type()
+    {
+        return _CMDReceiverDisp.ice_staticId();
     }
 }
